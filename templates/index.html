@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <style>
+input {
+  caret-color: red;
+}
+
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ecf0f3;
+  display: flex;
+
+ 
+  justify-content: center;
+  place-items: center;
+  overflow: hidden;
+  font-family: poppins;
+}
+.container {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+}
+
+.inputs {
+  text-align: left;
+  margin-top: 30px;
+}
+
+
+    </style>
+    </head>
+
+    <body>
+  
+<div class="container">
+
+    <form action="/" method="POST">
+          <h2>Input: </h2>
+        <label>Enter Stock Name (Symbol): </label>
+        <input name="symbol" type="text" />
+        <br>
+        <label>Enter Initial Price: </label>
+        <input name="user_input" type="text" />
+        <br>
+        <br><br>
+       
+        <input type="submit" value="Calculate" />
+    </form> 
+        <h2>Stock Info</h2><br>
+<form>
+        {% if request.method == "POST" and error == ""   %}
+        <b>Company Name:</b> {{companyName}}<br>
+        <b>Initial Price:</b> $ {{user_input}}<br>
+        <b>Time :</b> {{now}}<br>
+        <b>Valuation per share : </b>$ {{twoDaysData}}<br>
+        <b>Value Change :</b> $ {{valueChange}}<br>
+        <b>Percent Change :</b> {{percentChange}} %<br>
+
+        {% endif %}
+
+        {% if request.method == "POST" and error != ""   %}
+            <b style = "color:red" ><i> Error : {{error}} </i></b>
+        {% endif %}
+    </form>
+</div>
+    </body>
+</html>
+
